@@ -1,0 +1,290 @@
+/* ======================================================
+   12. RESPONSIVE MEDIA QUERIES
+====================================================== */
+
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  .navbar nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr; 
+    padding: 0;
+  }
+}
+/* ===============================
+   Responsive Site (Mobile & Tablet)
+   =============================== */
+
+/* General adjustments for tablets and below */
+@media (max-width: 1024px) {
+  .main {
+    grid-template-columns: 1fr; /* Stack hero image below text */
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .stats {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .main-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .delivered-meals {
+    justify-content: center;
+  }
+}
+
+/* Tablets and small laptops */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 20px;
+  }
+
+  .navbar nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .skills-grid,
+  .service-cards,
+  .portfolio-grid,
+  .testimonial-container {
+    grid-template-columns: 1fr; /* Stack all cards vertically */
+    gap: 30px;
+    padding: 0;
+  }
+
+  .portfolio-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .contact-form {
+    grid-template-columns: 1fr; /* Stack contact form fields */
+  }
+
+  .btn-send {
+    width: 100%;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .subtitle-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .red-line {
+    width: 30px;
+  }
+
+  .main-image img {
+    max-width: 280px;
+  }
+
+  .portfolio-header h2 {
+    font-size: 2rem;
+  }
+
+  .portfolio-header span {
+    font-size: 1.2rem;
+  }
+
+  .portfolio-desc {
+    font-size: 0.9rem;
+  }
+
+  .filter-buttons button {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+
+  .t-card {
+    padding: 25px;
+  }
+
+  .contact {
+    padding: 60px 20px;
+  }
+
+  .contact-title {
+    font-size: 3rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .service-cards .card {
+    padding: 30px 20px;
+  }
+
+  .stats {
+    gap: 20px;
+  }
+}
+/* ======================================================
+   13. ADVANCED ANIMATIONS & EFFECTS (REFINED)
+====================================================== */
+
+/* --- 1. Keyframes --- */
+
+/* Smooth Entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating for Hero Image */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Skill Bar Growth */
+@keyframes growBar {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+/* Button Pulse */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+}
+
+/* --- 2. Page & Section Load Effects --- */
+
+/* Apply this class to sections in your HTML to make them fade in on load */
+.reveal {
+  animation: fadeInUp 0.8s ease-out forwards;
+  /* Ensures it stays visible after animating */
+  animation-fill-mode: both; 
+}
+
+.main-image img {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+/* --- 3. Skills & Progress Bars --- */
+
+.progress {
+  transform-origin: left;
+  animation: growBar 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.skill-container {
+  transition: transform 0.3s ease;
+}
+
+.skill-container:hover {
+  transform: translateX(10px);
+}
+
+/* --- 4. Staggered Delays (Entrance timing) --- */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* --- 5. Interactive Elements (Buttons & Cards) --- */
+
+.btn.primary {
+  animation: pulse 2s infinite;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* Clean Hover: Instead of re-running the entrance animation, 
+   we use a subtle transform for a premium feel */
+#main:hover, #skill:hover, #services:hover, 
+.portfolio:hover, .testimonials:hover {
+  transform: translateY(-5px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .icon-box {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* Magnetic effect for icon boxes */
+.icon-box {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .icon-box {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* --- Smooth Scrolling Reveal (Optional - Best with JS but mimics with CSS) --- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+  }
+  
+  /* This activates the reveal when the section is in view */
+
+}
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 60px 20px;
+  }
+
+  .testimonial-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .t-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
